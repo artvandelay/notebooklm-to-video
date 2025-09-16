@@ -26,8 +26,8 @@ This tool automatically transcribes audio, generates sophisticated podcast album
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/yourusername/notebooklm-to-youtube.git
-   cd notebooklm-to-youtube
+   git clone https://github.com/yourusername/notebooklm-to-video.git
+   cd notebooklm-to-video
    ```
 
 2. **Install Python dependencies**
@@ -242,9 +242,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-- 🐛 **Issues**: [GitHub Issues](https://github.com/yourusername/notebooklm-to-youtube/issues)
-- 💬 **Discussions**: [GitHub Discussions](https://github.com/yourusername/notebooklm-to-youtube/discussions)
-- 📖 **Documentation**: [Wiki](https://github.com/yourusername/notebooklm-to-youtube/wiki)
+- 🐛 **Issues**: [GitHub Issues](https://github.com/yourusername/notebooklm-to-video/issues)
+- 💬 **Discussions**: [GitHub Discussions](https://github.com/yourusername/notebooklm-to-video/discussions)
+- 📖 **Documentation**: [Wiki](https://github.com/yourusername/notebooklm-to-video/wiki)
 
 ---
 
