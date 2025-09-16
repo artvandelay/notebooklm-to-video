@@ -45,25 +45,46 @@ This tool automatically transcribes audio, generates sophisticated podcast album
 
 ### Usage
 
+#### Basic Usage
 ```bash
+# Main workflow script (interactive)
 python3 src/main.py path/to/your/audio.file
+
+# Comprehensive script with options
+python3 create_video.py path/to/your/audio.file
+```
+
+#### Advanced Options
+```bash
+# Use existing cover art (skips transcription!)
+python3 create_video.py audio.mp4 --cover-art my-art.png --auto-approve
+
+# Custom AI prompt for cover art
+python3 create_video.py audio.mp4 --prompt "Minimalist podcast art" --auto-approve
+
+# Custom output path
+python3 create_video.py audio.mp4 -o videos/episode-001.mp4
+
+# Use existing transcript
+python3 create_video.py audio.mp4 --skip-transcription
 ```
 
 The tool will:
-1. 📝 Transcribe your audio using whisper.cpp
-2. 🎨 Generate artistic cover art based on content themes
-3. 🖼️ Show you the generated art for approval
+1. 📝 Transcribe your audio using whisper.cpp (only when needed)
+2. 🎨 Generate artistic cover art based on content themes (or use provided art)
+3. 🖼️ Show you the generated art for approval (unless auto-approved)
 4. 🎬 Create a YouTube-ready MP4 video
 
 ## 📁 Project Structure
 
 ```
 ├── src/
-│   ├── main.py              # Main orchestration script
+│   ├── main.py              # Main orchestration script (interactive)
 │   ├── transcribe.py        # Audio transcription with whisper.cpp
 │   ├── cover_art.py         # AI cover art generation
 │   ├── video.py            # Video creation with ffmpeg
 │   └── prompt_loader.py    # Prompt management system
+├── create_video.py          # Comprehensive video creator with options
 ├── prompts/
 │   ├── image_aesthetic.txt          # Visual style guidelines
 │   ├── transcript_to_image_prompt.txt   # Content analysis prompts
@@ -149,24 +170,29 @@ python3 src/main.py data/my-podcast-episode.m4a
 
 ### Expected Output
 ```
---- Step 1: Transcribing Audio ---
+🎵 Processing: my-podcast-episode.m4a
+
+📝 Step 1: Transcribing Audio
 Audio conversion completed.
 Starting transcription...
-Transcription successful.
+✅ Transcription saved: data/my-podcast-episode.txt
 
---- Step 2: Cover Art Generation ---
+🎨 Step 2: Cover Art
 Generated image prompt: Create sophisticated podcast album art...
 Cover art successfully saved to: data/cover_art_1234567890.png
 
---- Step 3: User Approval ---
-Generated cover art: data/cover_art_1234567890.png
-Do you want to proceed with video creation? (y/n): y
+👀 Step 3: Review
+🎨 Cover art: data/cover_art_1234567890.png
+🎬 Output will be: data/my-podcast-episode_video.mp4
+🤔 Proceed with video creation? (y/n): y
 
---- Step 4: Creating Video ---
-Creating video... Output will be saved to data/my-podcast-episode.mp4
+🎬 Step 4: Creating Video
+Creating video... Output will be saved to data/my-podcast-episode_video.mp4
 Video created successfully.
 
-Process complete! Video saved to: data/my-podcast-episode.mp4
+🎉 Success! Video created:
+📁 Location: data/my-podcast-episode_video.mp4
+📊 Size: 45,123,456 bytes (43.0 MB)
 ```
 
 ## 🐛 Troubleshooting
