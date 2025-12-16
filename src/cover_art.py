@@ -42,8 +42,8 @@ def generate_cover_art(transcript: str, output_dir: str = "data") -> str:
         "Content-Type": "application/json"
     }
     
-    # Using the google/gemini-2.5-flash-image-preview model for image generation.
-    model_name = "google/gemini-2.5-flash-image-preview"
+    # Using the google/gemini-3-pro-image-preview model for image generation.
+    model_name = "google/gemini-3-pro-image-preview"
 
     payload = {
         "model": model_name,
