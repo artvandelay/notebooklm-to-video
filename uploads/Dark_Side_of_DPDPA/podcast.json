@@ -1,0 +1,450 @@
+{
+  "version": 1,
+  "episode": {
+    "slug": "dark-side-of-dpdpa",
+    "title": "The India DPDP Act and the New Architecture of Digital Control",
+    "language": "en",
+    "summary": "A four-part masterclass on India's Digital Personal Data Protection Act, the DPDP Rules 2025, consent managers, breach reporting, state exemptions, and the amendment to the Right to Information Act. An impartial legal host explains the framework while a geopolitical game theorist challenges its incentives, asymmetries, and consequences for digital sovereignty.",
+    "art_prompt": "A content-accurate editorial illustration about India's DPDP Act: an Indian citizen at the center of a vast digital data-routing system, with government institutions and large technology corporations on opposite sides, consent tokens moving through regulated gateways, a shield obscuring public records, and the Supreme Court of India in the distance. Serious investigative tone, deep indigo, saffron, muted red, and parchment palette, cinematic 16:9 composition, sophisticated magazine art, no logos, no readable text, no generic glowing brains.",
+    "scene": "An investigative legal podcast recorded by two experts in a quiet professional studio, structured as a four-lecture masterclass.",
+    "director_notes": "Natural, intellectually serious conversation with no announcer delivery. Maya remains a neutral, precise legal narrator at a measured conversational pace, about 10 percent slower than a brisk delivery, so dense legal information can be followed. Arjun speaks calmly and matter-of-factly at a normal pace, with restrained energy and nearly flat emphasis; no excitement, theatricality, rhetorical punch, or exaggerated stress. Clearly distinguish established legal facts from critical interpretation. Perform inline audio tags without reading them aloud."
+  },
+  "tts": {
+    "model": "google/gemini-3.1-flash-tts-preview",
+    "sample_rate": 24000,
+    "default_pause_ms": 260,
+    "fade_ms": 8
+  },
+  "speakers": {
+    "HOST": {
+      "name": "Maya",
+      "voice": "Kore",
+      "style": "Neutral, calm legal narrator with precise diction, speaking at a measured conversational pace about 10 percent slower than a brisk delivery so dense legal information can be followed."
+    },
+    "CRITIC": {
+      "name": "Arjun",
+      "voice": "Charon",
+      "style": "Calm, understated geopolitical analyst with a natural conversational delivery; skeptical but matter-of-fact, low-key, and free of theatrical emphasis or enthusiasm."
+    }
+  },
+  "turns": [
+    {
+      "speaker": "HOST",
+      "text": "[thoughtful] What if a privacy law does more than protect personal data? What if it also decides who may collect data, who may route consent, who may punish violations, and what citizens are allowed to know about the state? This is a four-part masterclass on India's Digital Personal Data Protection Act of 2023 and the DPDP Rules of 2025.",
+      "pause_after_ms": 320
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "And we will read it as more than a compliance manual. Every system has players, rules, and incentives. The legal text tells us the rules. Game theory asks who gains power when those rules are followed.",
+      "pause_after_ms": 380
+    },
+    {
+      "speaker": "HOST",
+      "text": "A note before we begin: I will separate the enacted framework and documented institutional developments from Arjun's critical interpretation. His claims about elite incentives and digital control are arguments to examine, not settled legal conclusions.",
+      "pause_after_ms": 500
+    },
+    {
+      "speaker": "HOST",
+      "text": "[measured] Lecture One: The Great Data Consolidation, and the illusion of privacy.",
+      "pause_after_ms": 420
+    },
+    {
+      "speaker": "HOST",
+      "text": "The legislative story begins on the twenty-fourth of August, 2017, when the Supreme Court's Puttaswamy judgment affirmed privacy as a fundamental right. That judgment led to the Srikrishna Committee's 2018 draft, followed by the heavily debated Personal Data Protection Bill of 2019.",
+      "pause_after_ms": 220
+    },
+    {
+      "speaker": "HOST",
+      "text": "The 2019 bill was withdrawn in August 2022 after sustained criticism, including objections to data-localization provisions and expansive state exemptions. A rewritten bill passed Parliament in August 2023 and received presidential assent on the eleventh of August as the Digital Personal Data Protection Act.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "HOST",
+      "text": "The framework was operationalized through the DPDP Rules 2025 and related gazette notifications issued on the thirteenth and fourteenth of November, 2025. Enforcement was divided across three dates rather than switched on all at once.",
+      "pause_after_ms": 220
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "Three dates means three stages of the game. What happens at each stage?",
+      "pause_after_ms": 180
+    },
+    {
+      "speaker": "HOST",
+      "text": "First, from the thirteenth of November, 2025, core definitions, applicability provisions, and the legal constitution of the Data Protection Board of India came into force. Second, from the thirteenth of November, 2026, registration and accountability rules for Consent Managers take effect.",
+      "pause_after_ms": 220
+    },
+    {
+      "speaker": "HOST",
+      "text": "Third, from the thirteenth of May, 2027, the major substantive obligations take effect. These include notice, consent, reasonable security safeguards, and erasure requirements.",
+      "pause_after_ms": 320
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "So the institution is constituted first, the consent-routing layer comes next, and the broad compliance burden arrives last. That sequencing matters because an architecture of enforcement is being assembled before most rights and duties become active.",
+      "pause_after_ms": 300
+    },
+    {
+      "speaker": "HOST",
+      "text": "Two design choices distinguish this Act. First, it does not create a separate category of sensitive personal data. Digital personal data falls under a broadly uniform regime, although designated Significant Data Fiduciaries face heightened obligations.",
+      "pause_after_ms": 220
+    },
+    {
+      "speaker": "HOST",
+      "text": "Second, there is no general data-localization requirement. Section 16 allows cross-border transfers unless the central government restricts transfers to a specified country or territory.",
+      "pause_after_ms": 240
+    },
+    {
+      "speaker": "HOST",
+      "text": "At the same time, Section 17 contains broad exemptions. Under Section 17, subsection 2, clause a, certain state instrumentalities may be exempted from core obligations when the government invokes specified grounds. The Act also permits penalties that can reach 250 crore rupees for a failure to take reasonable security safeguards. Penalty receipts go to the Consolidated Fund of India.",
+      "pause_after_ms": 380
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "[skeptical] Now step outside the legal vocabulary. The public is named the Data Principal and shown a reassuring picture of consent and protection. But the deeper question is whether the system reduces extraction, or merely formalizes the actors permitted to extract.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "HOST",
+      "text": "Your argument is that the appearance of individual control can coexist with greater institutional consolidation?",
+      "pause_after_ms": 180
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "Exactly. The omission of a sensitive-data category, combined with relatively open cross-border transfers, keeps data highly fluid. In the critical reading, that fluidity benefits transnational capital and large technology platforms, especially when immense datasets can become fuel for advanced artificial intelligence.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "De-identified data is especially important. Once data no longer meets the law's definition of personal data, it can move beyond many of the Act's restrictions. The strategic asset is not merely a name or phone number. It is the behavioral pattern, preference, and attention that can be inferred at scale.",
+      "pause_after_ms": 280
+    },
+    {
+      "speaker": "HOST",
+      "text": "But de-identification can also support legitimate research, analytics, and innovation. The legal issue is whether safeguards against re-identification and misuse are strong enough.",
+      "pause_after_ms": 220
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "True. My argument concerns incentives, not the claim that every use is illegitimate. The private sector faces regulation and potentially enormous penalties, while the sovereign retains powerful exemption tools. That makes the state the rule-maker, a major data holder, and in some circumstances an exempt player.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "From this perspective, a penalty of 250 crore rupees is not only deterrence. It can operate as a strategic toll that only the largest, best-capitalized organizations can reliably absorb. By May 2027, the framework may have clarified not whether data will be exploited, but which institutions possess the legal and financial capacity to do it.",
+      "pause_after_ms": 560
+    },
+    {
+      "speaker": "HOST",
+      "text": "[measured] Lecture Two: The Consent Manager Cartel, and the battle over who routes permission.",
+      "pause_after_ms": 420
+    },
+    {
+      "speaker": "HOST",
+      "text": "Consent Managers are established under Section 6 of the Act and Rule 4 of the DPDP Rules. Their registration framework is scheduled to take effect on the thirteenth of November, 2026. In principle, they give individuals a common platform through which consent can be granted, managed, reviewed, and withdrawn.",
+      "pause_after_ms": 240
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "That sounds empowering. But access to the role is tightly controlled. Walk us through the entry conditions.",
+      "pause_after_ms": 180
+    },
+    {
+      "speaker": "HOST",
+      "text": "A Consent Manager must be a company incorporated in India. It must maintain a minimum net worth of two crore rupees, subject to the rules, and satisfy fit-and-proper standards concerning integrity, competence, and financial condition.",
+      "pause_after_ms": 220
+    },
+    {
+      "speaker": "HOST",
+      "text": "It must keep routed personal data unreadable to itself. It cannot act as both Data Fiduciary and Data Processor for the same Data Principals whose consent it manages where that would create a prohibited conflict. It must also preserve consent records for at least seven years.",
+      "pause_after_ms": 220
+    },
+    {
+      "speaker": "HOST",
+      "text": "The Data Protection Board can suspend or cancel a Consent Manager's registration for non-compliance. These controls are intended to make consent infrastructure trustworthy, independent, and auditable.",
+      "pause_after_ms": 300
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "But the two-crore threshold does more than signal trust. It excludes many grassroots, cooperative, open-source, and small-scale entrants before they can compete. The critical interpretation is that Rule 4 creates a licensed corporate gateway around the act of human permission.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "HOST",
+      "text": "Supporters would answer that a Consent Manager handles high-risk infrastructure and needs enough capital to operate securely and compensate for failures.",
+      "pause_after_ms": 180
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "And that is the genuine policy trade-off: resilience versus concentration. A high threshold may filter out fragile operators, but it also narrows the field to firms the state can license, inspect, and sanction. Consent becomes standardized, tokenized, and routed through a small number of institutional intermediaries.",
+      "pause_after_ms": 320
+    },
+    {
+      "speaker": "HOST",
+      "text": "The comparison with the Reserve Bank of India's Account Aggregator ecosystem is unavoidable. By June 2026, the source material reports more than 294 million linked financial accounts, over 450 million fulfilled consent requests, 1,120 live regulated financial entities, and 17 operational Account Aggregators.",
+      "pause_after_ms": 280
+    },
+    {
+      "speaker": "HOST",
+      "text": "Account Aggregators already provide a token-based consent framework for sharing financial information among regulated institutions. DPDP Consent Managers cover a broader legal domain, but the two systems may touch overlapping users, institutions, and data flows.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "[intense] That overlap creates a contest inside the regulatory state. MeitY's Consent Managers and the RBI's Account Aggregators emerge from different mandates, yet both can become gateways through which permission and valuable data relationships are organized.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "HOST",
+      "text": "Calling it a civil war may overstate the current evidence. Coordination, specialization, and interoperability are also possible.",
+      "pause_after_ms": 200
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "Agreed; institutional conflict is a hypothesis, not a proven outcome. But the strategic prize is clear. Whoever controls the consent layer gains influence over the flow of transactional information. Even if the intermediary cannot read the data, it can occupy a crucial position in the network that governs access.",
+      "pause_after_ms": 300
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "The public story is user empowerment. The game-theory story is control of the routing architecture. Both can be true at once, and that is why the design of competition, interoperability, and oversight matters more than the word consent by itself.",
+      "pause_after_ms": 560
+    },
+    {
+      "speaker": "HOST",
+      "text": "[measured] Lecture Three: The Sledgehammer of Compliance, and systemic asymmetry.",
+      "pause_after_ms": 420
+    },
+    {
+      "speaker": "HOST",
+      "text": "Rule 7 governs personal data breach notifications. A Data Fiduciary must notify affected individuals and the Data Protection Board without delay, then provide the Board with more detailed information within 72 hours.",
+      "pause_after_ms": 220
+    },
+    {
+      "speaker": "HOST",
+      "text": "A striking feature is the absence of a general materiality or harm threshold for triggering the initial notification. The source contrasts this with the European GDPR, where communication to an individual is tied to a high risk to that person's rights and freedoms.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "That means a severe intrusion and a technically minor incident can both enter the reporting machinery. The stated goal is comprehensive visibility, but the system may generate a flood of low-value alerts.",
+      "pause_after_ms": 240
+    },
+    {
+      "speaker": "HOST",
+      "text": "Section 8, subsection 5, also requires reasonable security safeguards to prevent personal data breaches. A failure can attract penalties of up to 250 crore rupees. In addition, organizations may need to navigate the separate CERT-In incident-reporting direction, which uses a six-hour deadline for specified cyber incidents.",
+      "pause_after_ms": 280
+    },
+    {
+      "speaker": "HOST",
+      "text": "So an organization may face parallel legal clocks: the DPDP framework's 72-hour detailed report and CERT-In's much shorter deadline where that direction applies. Compliance teams must determine scope, preserve evidence, notify correctly, and avoid inconsistent reporting under pressure.",
+      "pause_after_ms": 300
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "This is where the law of asymmetry enters. A giant conglomerate can maintain legal counsel, incident responders, forensic specialists, and a round-the-clock reporting function. A small enterprise may have the same clock but none of that bureaucratic mass.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "HOST",
+      "text": "The phrase used in the source is a sledgehammer instead of a chisel: one broad reporting obligation rather than a calibrated system based on probable harm.",
+      "pause_after_ms": 220
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "Exactly. If every breach must be reported without a meaningful threshold, administrative friction becomes a filtering mechanism. Smaller firms spend scarce capital surviving compliance. Large incumbent firms spread that cost across enormous operations and may even turn compliance capacity into a competitive moat.",
+      "pause_after_ms": 280
+    },
+    {
+      "speaker": "HOST",
+      "text": "But under-reporting also carries real costs. A materiality threshold can be manipulated, and organizations may minimize harm to avoid disclosure. The challenge is to reduce noise without creating an escape hatch.",
+      "pause_after_ms": 240
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "That is fair. A calibrated regime needs clear thresholds, auditability, and punishment for dishonest classification. My objection is not to breach reporting. It is to uniform obligations whose practical burden falls very differently across unequal players.",
+      "pause_after_ms": 300
+    },
+    {
+      "speaker": "HOST",
+      "text": "The source also raises an institutional concern. Although the Data Protection Board was legally constituted in November 2025, it describes the Board as largely non-functional as of August 2026, with appointments and operational capacity still developing.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "[skeptical] That creates a paradox: a powerful enforcement framework can influence behavior before the adjudicatory institution is fully operational. The threat of a 250-crore-rupee penalty may shape private-sector decisions even when the Board's practical processes remain uncertain.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "HOST",
+      "text": "The optimistic view is that phased commencement gives institutions time to build capacity before substantive duties take full effect in May 2027.",
+      "pause_after_ms": 220
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "The pessimistic view is that uncertainty itself favors large, state-aligned, compliance-heavy organizations. In that reading, the sledgehammer does not merely punish bad security. It consolidates the market around actors able to withstand the regulatory weight.",
+      "pause_after_ms": 560
+    },
+    {
+      "speaker": "HOST",
+      "text": "[measured] Lecture Four: The Twilight of Information, and the sovereign shield.",
+      "pause_after_ms": 420
+    },
+    {
+      "speaker": "HOST",
+      "text": "Section 44, subsection 3, of the DPDP Act amends Section 8, subsection 1, clause j, of the Right to Information Act of 2005. This is among the framework's most politically and legally contested provisions.",
+      "pause_after_ms": 240
+    },
+    {
+      "speaker": "HOST",
+      "text": "The earlier RTI provision exempted personal information in defined circumstances, but included a public-interest balancing test and a proviso linked to information that could not be denied to Parliament or a state legislature.",
+      "pause_after_ms": 240
+    },
+    {
+      "speaker": "HOST",
+      "text": "The amendment replaces that wording with a broader exemption for information relating to personal information. Critics argue that removing the explicit public-interest test can prevent disclosure even when personal information reveals corruption, conflicts of interest, misuse of office, or failures in public administration.",
+      "pause_after_ms": 280
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "This is where privacy can become a shield for power. The citizen is told that personal information must be protected, while the category may also cover facts needed to scrutinize public officials and state action.",
+      "pause_after_ms": 240
+    },
+    {
+      "speaker": "HOST",
+      "text": "The government has defended the amendment as an effort to align the RTI Act with the constitutional right to privacy recognized in Puttaswamy. Opponents argue that privacy and transparency should be balanced rather than resolved through a blanket exemption.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "HOST",
+      "text": "On the twenty-sixth of March, 2025, more than 120 opposition members of Parliament, along with prominent RTI advocates, wrote to the information technology minister warning that the amendment would severely weaken the RTI framework.",
+      "pause_after_ms": 240
+    },
+    {
+      "speaker": "HOST",
+      "text": "The dispute then reached the Supreme Court through Venkatesh Nayak versus Union of India, a petition filed on the second of February, 2026. On the sixteenth of February, a bench led by Chief Justice Surya Kant issued notice, declined an interim stay, and referred the matter for consideration by a larger constitutional bench.",
+      "pause_after_ms": 360
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "[intense] Information asymmetry is a currency of control. If citizens can audit officials, inspect decisions, and trace public resources, authority is contestable. If the state can see deeply into citizens while citizens lose tools to inspect the state, power moves in one direction.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "HOST",
+      "text": "You connect the RTI amendment to the exemptions available under the DPDP Act itself.",
+      "pause_after_ms": 180
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "Yes. Private citizens and businesses face demanding consent, security, and breach-reporting rules. Meanwhile, government databases and state functions may receive substantial exemptions, and the amended RTI provision may make some personal-information records harder to obtain.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "Taken together, those provisions can create what I call a sovereign shield: the state preserves its ability to collect and process information while narrowing the public's ability to look back through the glass.",
+      "pause_after_ms": 280
+    },
+    {
+      "speaker": "HOST",
+      "text": "The constitutional case therefore turns on a genuine collision. Privacy is a fundamental right. Transparency supports democratic accountability. The hard question is whether the amended exemption reconciles those rights or sacrifices one to the other.",
+      "pause_after_ms": 300
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "And the larger bench will decide more than the wording of one exemption. It will influence whether digital governance develops as a reciprocal system, where citizens and institutions can hold each other accountable, or as a one-way architecture in which the state sees more and the citizen sees less.",
+      "pause_after_ms": 560
+    },
+    {
+      "speaker": "HOST",
+      "text": "[reflective] We have traced four connected structures: fluid cross-border data, licensed consent intermediaries, asymmetric compliance burdens, and a contested shield around public information.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "Together they form the source's central argument. A law presented as individual data protection can also become an operating system for institutional control. That conclusion is not automatic, but the incentives deserve sustained scrutiny.",
+      "pause_after_ms": 280
+    },
+    {
+      "speaker": "HOST",
+      "text": "So what should an individual take from this without falling into either blind trust or total despair?",
+      "pause_after_ms": 220
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "First, refuse passive participation. Understand where your data goes, withdraw consent when it no longer serves you, and support institutions that minimize collection rather than merely promising compliance.",
+      "pause_after_ms": 240
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "Second, build resilience outside centralized platforms: strong families, local communities, professional associations, cooperatives, and tools that preserve autonomy. Efficiency concentrates dependence. Resilience creates alternatives.",
+      "pause_after_ms": 260
+    },
+    {
+      "speaker": "HOST",
+      "text": "And at the civic level, the response is engagement: follow the implementation dates, examine how Consent Managers are licensed, demand a capable and independent Data Protection Board, and watch how the Supreme Court resolves the conflict between privacy and the Right to Information.",
+      "pause_after_ms": 280
+    },
+    {
+      "speaker": "CRITIC",
+      "text": "[quietly] Systems of control depend not only on law and technology, but on attention, compliance, and fear. Once people understand the game, they can choose where to participate, where to resist, and what kind of digital society they are willing to build.",
+      "pause_after_ms": 300
+    },
+    {
+      "speaker": "HOST",
+      "text": "The DPDP framework is still moving through phased implementation, institutional development, and constitutional challenge. Treat the dates and case status discussed here as a snapshot from August 2026, and consult the official Act, Rules, gazette notifications, and current court records before making legal decisions.",
+      "pause_after_ms": 240
+    },
+    {
+      "speaker": "HOST",
+      "text": "This has been The India DPDP Act and the New Architecture of Digital Control. Thank you for listening."
+    }
+  ],
+  "chapters": [
+    {
+      "title": "Introduction: Privacy Law as a Game",
+      "turn": 0
+    },
+    {
+      "title": "Lecture 1: The Great Data Consolidation",
+      "turn": 3
+    },
+    {
+      "title": "Lecture 2: The Consent Manager Cartel",
+      "turn": 21
+    },
+    {
+      "title": "Lecture 3: The Sledgehammer of Compliance",
+      "turn": 36
+    },
+    {
+      "title": "Lecture 4: The Twilight of Information",
+      "turn": 51
+    },
+    {
+      "title": "Closing: The Path to Digital Sovereignty",
+      "turn": 66
+    }
+  ],
+  "youtube": {
+    "title": "India's DPDP Act: Privacy Law or Digital Control? | DPDPA 2023 & RTI",
+    "description": "India's Digital Personal Data Protection Act promises greater privacy—but what kind of power structure does it create?\n\nThis four-part masterclass separates the legal framework from a provocative game-theory critique. It examines phased implementation, Consent Managers, Account Aggregators, breach reporting, the ₹250 crore penalty framework, state exemptions, Section 44(3), the Right to Information Act, and Venkatesh Nayak v. Union of India.\n\nPrimary references include the DPDPA 2023, DPDP Rules 2025, gazette notifications G.S.R. 843(E)–846(E), Puttaswamy, the RTI Act 2005, and W.P.(C) 177/2026.\n\nThis episode is educational commentary, not legal advice. Legal and institutional developments are presented as a snapshot from August 2026. Verify current legislation, notifications, and court records before relying on them.\n\n#DPDPAct #DataPrivacy #RightToInformation #DigitalIndia #CyberLaw",
+    "tags": [
+      "India DPDP Act",
+      "DPDPA 2023",
+      "DPDP Rules 2025",
+      "data privacy India",
+      "Digital Personal Data Protection Act",
+      "Consent Manager",
+      "Data Protection Board of India",
+      "Right to Information",
+      "RTI Act",
+      "Section 44(3)",
+      "Venkatesh Nayak",
+      "digital sovereignty",
+      "game theory",
+      "cyber law",
+      "privacy law",
+      "India policy"
+    ],
+    "category": "Education"
+  }
+}
