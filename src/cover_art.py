@@ -2,6 +2,7 @@ import os
 import sys
 import requests
 import base64
+import binascii
 from dotenv import load_dotenv
 from pathlib import Path
 import time
@@ -19,13 +20,21 @@ load_dotenv()
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 
-def generate_cover_art(transcript: str, output_dir: str = "data") -> str:
+def generate_cover_art(
+    transcript: str,
+    output_dir: str = "data",
+    *,
+    output_path: str | Path | None = None,
+    prompt_override: str | None = None,
+) -> str:
     """
     Generates cover art using the OpenRouter API and saves it to a file.
 
     Args:
         transcript (str): The audio transcript to base the cover art on.
         output_dir (str): The directory to save the image in. Defaults to "data".
+        output_path (str | Path | None): An exact filename inside output_dir.
+        prompt_override (str | None): An exact prompt to send to the model.
 
     Returns:
         str: The path to the saved image file.
@@ -33,8 +42,16 @@ def generate_cover_art(transcript: str, output_dir: str = "data") -> str:
     if not OPENROUTER_API_KEY:
         raise ValueError("OPENROUTER_API_KEY not found in .env file")
 
-    # Generate the image prompt using the prompt system
-    prompt = get_image_prompt(transcript)
+    output_directory = Path(output_dir)
+    image_filepath = Path(output_path) if output_path is not None else None
+    if (
+        image_filepath is not None
+        and image_filepath.resolve().parent != output_directory.resolve()
+    ):
+        raise ValueError("output_path must be directly inside output_dir")
+
+    # Generate the image prompt using the prompt system unless one was supplied.
+    prompt = prompt_override if prompt_override is not None else get_image_prompt(transcript)
     print(f"Generated image prompt: {prompt[:100]}...")
 
     headers = {
@@ -55,7 +72,8 @@ def generate_cover_art(transcript: str, output_dir: str = "data") -> str:
     response = requests.post(
         "https://openrouter.ai/api/v1/chat/completions",
         headers=headers,
-        json=payload
+        json=payload,
+        timeout=180,
     )
 
     if response.status_code != 200:
@@ -68,18 +86,24 @@ def generate_cover_art(transcript: str, output_dir: str = "data") -> str:
         
         # The data URL is in the format "data:image/png;base64,iVBORw0K..."
         header, encoded = image_data_url.split(",", 1)
-        image_data = base64.b64decode(encoded)
+        if not header.startswith("data:image/") or ";base64" not in header:
+            raise ValueError("Malformed image data URL")
+        try:
+            image_data = base64.b64decode(encoded, validate=True)
+        except (binascii.Error, ValueError) as e:
+            raise ValueError("Malformed image data URL") from e
         
-        output_path = Path(output_dir)
-        output_path.mkdir(parents=True, exist_ok=True)
-        
-        # Create a unique filename
-        timestamp = int(time.time())
-        image_filename = f"cover_art_{timestamp}.png"
-        image_filepath = output_path / image_filename
+        if image_filepath is None:
+            timestamp = int(time.time())
+            image_filepath = output_directory / f"cover_art_{timestamp}.png"
 
-        with open(image_filepath, "wb") as f:
-            f.write(image_data)
+        image_filepath.parent.mkdir(parents=True, exist_ok=True)
+        if output_path is not None:
+            temporary_path = Path(f"{image_filepath}.tmp")
+            temporary_path.write_bytes(image_data)
+            os.replace(temporary_path, image_filepath)
+        else:
+            image_filepath.write_bytes(image_data)
         
         print(f"Cover art successfully saved to: {image_filepath}")
         return str(image_filepath)

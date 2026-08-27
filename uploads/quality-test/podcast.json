@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "episode": {
+    "slug": "quality-test",
+    "title": "Podcast Naturalness Quick Check",
+    "language": "en",
+    "summary": "A short two-host demo about what makes podcast dialogue feel natural: stable voices, intentional pauses, and lively delivery.",
+    "art_prompt": "Editorial illustration of two podcast hosts at a simple studio desk with microphones, warm desk lamp, clean modern composition, no text.",
+    "scene": "Two hosts recording in a quiet professional studio.",
+    "director_notes": "Natural conversation; vary pace; avoid announcer delivery."
+  },
+  "tts": {
+    "model": "google/gemini-3.1-flash-tts-preview",
+    "sample_rate": 24000,
+    "default_pause_ms": 180,
+    "fade_ms": 8
+  },
+  "speakers": {
+    "HOST": {
+      "name": "Maya",
+      "voice": "Kore",
+      "style": "Warm, confident, curious host."
+    },
+    "GUEST": {
+      "name": "Arun",
+      "voice": "Puck",
+      "style": "Thoughtful expert with conversational energy."
+    }
+  },
+  "turns": [
+    {
+      "speaker": "HOST",
+      "text": "[excited] Welcome to our tiny quality check. Today we are testing whether podcast dialogue can feel natural.",
+      "pause_after_ms": 160
+    },
+    {
+      "speaker": "GUEST",
+      "text": "Thanks, Maya. [laughs] Naturalness is mostly about rhythm, not fancy words.",
+      "pause_after_ms": 180
+    },
+    {
+      "speaker": "HOST",
+      "text": "Exactly. Stable voices, clear turns, and pauses that sound intentional.",
+      "pause_after_ms": 150
+    },
+    {
+      "speaker": "GUEST",
+      "text": "Yes. Keep the delivery conversational and clean.",
+      "pause_after_ms": 170
+    },
+    {
+      "speaker": "HOST",
+      "text": "[laughs] If the join between us feels smooth, we are in good shape.",
+      "pause_after_ms": 140
+    },
+    {
+      "speaker": "GUEST",
+      "text": "Agreed. A short breath between speakers beats a hard click every time.",
+      "pause_after_ms": 160
+    },
+    {
+      "speaker": "HOST",
+      "text": "So if this short demo sounds continuous, the stitch is good enough for longer episodes.",
+      "pause_after_ms": 150
+    },
+    {
+      "speaker": "GUEST",
+      "text": "Perfect. Keep it simple, keep it human, and we are done."
+    }
+  ],
+  "chapters": [
+    {"title": "Introduction", "turn": 0},
+    {"title": "Naturalness Checks", "turn": 2},
+    {"title": "Closing", "turn": 6}
+  ],
+  "youtube": {
+    "title": "Podcast Naturalness Quick Check | Quality Gate Demo",
+    "description": "Short two-speaker quality gate for script-to-podcast rendering.",
+    "tags": ["podcast", "quality-gate", "tts", "education"],
+    "category": "Education"
+  }
+}
