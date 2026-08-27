@@ -8,7 +8,7 @@ transcription, and output customization.
 
 import argparse
 import sys
-import os
+import shutil
 from pathlib import Path
 
 # Add src to path for imports
@@ -17,6 +17,7 @@ sys.path.append(str(Path(__file__).parent / "src"))
 from transcribe import transcribe_audio
 from cover_art import generate_cover_art
 from video import create_video as create_video_ffmpeg
+from job import resolve_job
 
 def create_video_with_options(
     audio_path: str,
@@ -25,27 +26,33 @@ def create_video_with_options(
     custom_prompt: str = None,
     skip_transcription: bool = False,
     auto_approve: bool = False,
-    output_dir: str = "data"
+    output_dir: str = None
 ):
     """
     Create a video with various customization options.
     
     Args:
-        audio_path: Path to input audio file
+        audio_path: Path to a job folder or an audio file
         output_path: Custom output video path (optional)
         cover_art_path: Use existing cover art instead of generating (optional)
         custom_prompt: Custom prompt for AI cover art generation (optional)
         skip_transcription: Skip transcription if transcript already exists
         auto_approve: Skip user approval and proceed automatically
-        output_dir: Directory for output files
+        output_dir: Directory for output files (defaults to the job folder)
     """
     
-    audio_file = Path(audio_path)
-    if not audio_file.exists():
-        print(f"❌ Error: Audio file not found: {audio_path}")
+    try:
+        job_dir, audio_file = resolve_job(audio_path)
+    except (FileNotFoundError, ValueError) as e:
+        print(f"❌ Error: {e}")
         return False
+
+    job_dir.mkdir(parents=True, exist_ok=True)
+    if not output_dir:
+        output_dir = str(job_dir)
     
     print(f"🎵 Processing: {audio_file.name}")
+    print(f"📁 Job folder: {job_dir}")
     
     # Set default output path
     if not output_path:
@@ -87,6 +94,10 @@ def create_video_with_options(
         if not cover_art_file.exists():
             print(f"❌ Error: Cover art file not found: {cover_art_path}")
             return False
+        if cover_art_file.resolve().parent != job_dir.resolve():
+            dest = job_dir / cover_art_file.name
+            shutil.copy2(cover_art_file, dest)
+            cover_art_file = dest
         print(f"🖼️ Using provided cover art: {cover_art_file}")
         final_cover_art = str(cover_art_file)
     else:
@@ -94,17 +105,16 @@ def create_video_with_options(
         try:
             if custom_prompt:
                 print(f"🎯 Using custom prompt: {custom_prompt[:100]}...")
-                # Temporarily replace the transcript with custom prompt
-                final_cover_art = generate_cover_art(custom_prompt)
+                final_cover_art = generate_cover_art(custom_prompt, output_dir=output_dir)
             else:
                 print("🤖 Generating AI cover art from transcript...")
-                final_cover_art = generate_cover_art(transcript_content)
+                final_cover_art = generate_cover_art(transcript_content, output_dir=output_dir)
             
             print(f"✅ Cover art generated: {final_cover_art}")
         except Exception as e:
             print(f"❌ Cover art generation failed: {e}")
             print("🔄 Falling back to placeholder...")
-            placeholder_path = Path("data/placeholder.png")
+            placeholder_path = Path(output_dir) / "placeholder.png"
             if placeholder_path.exists():
                 final_cover_art = str(placeholder_path)
             else:
@@ -152,42 +162,33 @@ def main():
         epilog="""
 🎯 Examples:
 
-Basic usage:
-  python3 create_video.py data/my-audio.mp4
+New upload (create a folder first, drop audio + optional cover in it):
+  mkdir -p uploads/my-episode
+  cp ~/Downloads/episode.m4a uploads/my-episode/
+  python3 create_video.py uploads/my-episode --auto-approve
 
-With custom output:
-  python3 create_video.py data/podcast.m4a -o videos/episode-001.mp4
-
-Use existing cover art:
-  python3 create_video.py data/audio.wav --cover-art data/my-art.png
-
-Auto-approve (no manual intervention):
-  python3 create_video.py data/audio.mp3 --auto-approve
+Use existing cover art in that folder:
+  python3 create_video.py uploads/my-episode --cover-art uploads/my-episode/cover.png --auto-approve
 
 Custom AI prompt for cover art:
-  python3 create_video.py data/audio.wav --prompt "Abstract geometric art with purple gradients"
+  python3 create_video.py uploads/my-episode --prompt "Abstract geometric art with purple gradients"
 
 Skip transcription (use existing):
-  python3 create_video.py data/audio.mp4 --skip-transcription
-
-🎨 Combine options:
-  python3 create_video.py data/audio.m4a -o final.mp4 --auto-approve --prompt "Minimalist podcast art"
+  python3 create_video.py uploads/my-episode --skip-transcription
         """
     )
     
-    # Required argument
-    parser.add_argument("audio_file", help="Path to input audio file")
+    parser.add_argument("audio_file", help="Job folder (uploads/<name>/) or path to an audio file")
     
-    # Optional arguments
-    parser.add_argument("-o", "--output", help="Output video path (default: auto-generated)")
+    parser.add_argument("-o", "--output", help="Output video path (default: <job folder>/<stem>_video.mp4)")
     parser.add_argument("--cover-art", help="Use existing cover art image instead of generating")
     parser.add_argument("--prompt", help="Custom prompt for AI cover art generation")
     parser.add_argument("--skip-transcription", action="store_true", 
                        help="Skip transcription if transcript file already exists")
     parser.add_argument("--auto-approve", action="store_true",
                        help="Skip user approval and proceed automatically")
-    parser.add_argument("--output-dir", default="data",
-                       help="Directory for output files (default: data)")
+    parser.add_argument("--output-dir", default=None,
+                       help="Directory for output files (default: the job folder)")
     parser.add_argument("--version", action="version", version="Video Creator v1.0.0")
     
     args = parser.parse_args()

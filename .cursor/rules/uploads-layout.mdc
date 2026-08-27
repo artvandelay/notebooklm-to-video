@@ -1,0 +1,21 @@
+---
+description: Keep each upload's files in uploads/<episode>/; never dump media at repo root.
+alwaysApply: true
+---
+
+# Upload folder layout
+
+- Repo root is scripts and config only (`create_video.py`, `translate_to_marathi.py`, `src/`, `prompts/`, `.env`).
+- Every episode and all its artifacts live in `uploads/<episode-name>/`.
+- Create a new folder under `uploads/` for each new upload. Pass that folder to the scripts.
+- Keep the episode root limited to active config and approved canonical deliverables: `podcast.json`, `<slug>.png`, `<slug>.podcast.mp3`, `<slug>_video.mp4`, and `<slug>.youtube.md`.
+- Organize supporting files by purpose:
+  - `source/`: original audio, transcripts, translations, and research.
+  - `drafts/cover-art/`: prompts and candidate cover images.
+  - `previews/audio/`: short quality-check renders.
+  - `logs/`: generation logs.
+  - `.podcast/`: paid caches, manifests, and intermediate WAV files.
+- Copy image-generator output into `drafts/cover-art/`; replace the canonical `<slug>.png` only after user approval.
+- After final approval, delete rejected drafts, test previews, logs, preview WAVs, and obsolete caches. Keep source inputs, active config, canonical deliverables, the final-render cache, and final mastering intermediates.
+- Do not write generated media to the repo root, `src/`, or a shared `data/` dump.
+- Full convention: `AGENTS.md`.

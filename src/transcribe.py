@@ -66,7 +66,7 @@ def transcribe_audio(audio_file_path: str) -> str:
 
 if __name__ == '__main__':
     # This is an example of how to use the function.
-    audio_file_to_process = "data/Beyond_the_Hype__Debunking_the_AI_Bubble_and_Unpacking_Its_True_Impact (1).m4a"
+    audio_file_to_process = "uploads/my-episode/episode.m4a"
 
     if not os.path.exists(audio_file_to_process):
         print(f"Error: The file '{audio_file_to_process}' does not exist.")

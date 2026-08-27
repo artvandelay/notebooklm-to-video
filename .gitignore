@@ -48,7 +48,18 @@ env/
 ehthumbs.db
 Thumbs.db
 
-# Output files (keep structure but ignore content)
+# Output files (keep folder structure, ignore generated media)
+uploads/**/.podcast/
+uploads/**/*.mp4
+uploads/**/*.mp3
+uploads/**/*.wav
+uploads/**/*.m4a
+uploads/**/*.png
+uploads/**/*.jpg
+uploads/**/*.jpeg
+!uploads/.gitkeep
+
+# Legacy dump (removed; job folders replaced this)
 data/*.mp4
 data/*.mp3
 data/*.wav

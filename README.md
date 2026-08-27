@@ -47,26 +47,26 @@ This tool automatically transcribes audio, generates sophisticated podcast album
 
 #### Basic Usage
 ```bash
-# Main workflow script (interactive)
-python3 src/main.py path/to/your/audio.file
+# New upload: one folder per episode, all files stay there
+mkdir -p uploads/my-episode
+cp ~/Downloads/episode.m4a uploads/my-episode/
 
-# Comprehensive script with options
-python3 create_video.py path/to/your/audio.file
+python3 create_video.py uploads/my-episode --auto-approve
 ```
 
 #### Advanced Options
 ```bash
-# Use existing cover art (skips transcription!)
-python3 create_video.py audio.mp4 --cover-art my-art.png --auto-approve
+# Use existing cover art (skips transcription)
+python3 create_video.py uploads/my-episode --cover-art uploads/my-episode/cover.png --auto-approve
 
 # Custom AI prompt for cover art
-python3 create_video.py audio.mp4 --prompt "Minimalist podcast art" --auto-approve
+python3 create_video.py uploads/my-episode --prompt "Minimalist podcast art" --auto-approve
 
 # Custom output path
-python3 create_video.py audio.mp4 -o videos/episode-001.mp4
+python3 create_video.py uploads/my-episode -o uploads/my-episode/final.mp4
 
 # Use existing transcript
-python3 create_video.py audio.mp4 --skip-transcription
+python3 create_video.py uploads/my-episode --skip-transcription
 ```
 
 The tool will:
@@ -77,23 +77,34 @@ The tool will:
 
 ## 📁 Project Structure
 
+Scripts stay at the repo root. **Every episode gets its own folder under `uploads/`** — audio, cover, transcripts, translations, and the final video all go there. Do not leave generated files in the repo root.
+
 ```
+├── create_video.py          # audio + cover → YouTube MP4
+├── translate_to_marathi.py  # Gujarati audio → Marathi text + speech
 ├── src/
-│   ├── main.py              # Main orchestration script (interactive)
-│   ├── transcribe.py        # Audio transcription with whisper.cpp
-│   ├── cover_art.py         # AI cover art generation
-│   ├── video.py            # Video creation with ffmpeg
-│   └── prompt_loader.py    # Prompt management system
-├── create_video.py          # Comprehensive video creator with options
-├── prompts/
-│   ├── image_aesthetic.txt          # Visual style guidelines
-│   ├── transcript_to_image_prompt.txt   # Content analysis prompts
-│   ├── system_instructions.txt      # AI behavior settings
-│   └── README.md                   # Prompt customization guide
-├── data/                   # Output directory for generated files
-├── requirements.txt        # Python dependencies
-└── README.md              # This file
+│   ├── main.py              # Interactive orchestration
+│   ├── job.py               # Resolves a job folder or audio file
+│   ├── transcribe.py        # whisper.cpp transcription
+│   ├── cover_art.py         # OpenRouter cover art
+│   ├── video.py             # ffmpeg still-image video
+│   └── prompt_loader.py
+├── prompts/                 # Cover-art style prompts
+├── uploads/
+│   └── <episode-name>/      # One folder per upload
+│       ├── <episode>.m4a
+│       ├── <episode>.png            # cover / thumbnail
+│       ├── <episode>.txt            # transcript
+│       ├── <episode>.gujarati.txt
+│       ├── <episode>.marathi.txt
+│       ├── <episode>.marathi.mp3
+│       └── <episode>_video.mp4
+├── AGENTS.md                # Conventions for coding agents
+├── requirements.txt
+└── README.md
 ```
+
+See [`AGENTS.md`](AGENTS.md) for the same layout written for automated agents.
 
 ## 🎨 Customizing Your Podcast Style
 
@@ -165,33 +176,36 @@ model_name = "google/gemini-2.5-flash-image-preview"  # Default
 
 ### Basic Usage
 ```bash
-python3 src/main.py data/my-podcast-episode.m4a
+mkdir -p uploads/my-podcast-episode
+cp ~/Downloads/my-podcast-episode.m4a uploads/my-podcast-episode/
+python3 create_video.py uploads/my-podcast-episode
 ```
 
 ### Expected Output
 ```
 🎵 Processing: my-podcast-episode.m4a
+📁 Job folder: uploads/my-podcast-episode
 
 📝 Step 1: Transcribing Audio
 Audio conversion completed.
 Starting transcription...
-✅ Transcription saved: data/my-podcast-episode.txt
+✅ Transcription saved: uploads/my-podcast-episode/my-podcast-episode.txt
 
 🎨 Step 2: Cover Art
 Generated image prompt: Create sophisticated podcast album art...
-Cover art successfully saved to: data/cover_art_1234567890.png
+Cover art successfully saved to: uploads/my-podcast-episode/cover_art_1234567890.png
 
 👀 Step 3: Review
-🎨 Cover art: data/cover_art_1234567890.png
-🎬 Output will be: data/my-podcast-episode_video.mp4
+🎨 Cover art: uploads/my-podcast-episode/cover_art_1234567890.png
+🎬 Output will be: uploads/my-podcast-episode/my-podcast-episode_video.mp4
 🤔 Proceed with video creation? (y/n): y
 
 🎬 Step 4: Creating Video
-Creating video... Output will be saved to data/my-podcast-episode_video.mp4
+Creating video... Output will be saved to uploads/my-podcast-episode/my-podcast-episode_video.mp4
 Video created successfully.
 
 🎉 Success! Video created:
-📁 Location: data/my-podcast-episode_video.mp4
+📁 Location: uploads/my-podcast-episode/my-podcast-episode_video.mp4
 📊 Size: 45,123,456 bytes (43.0 MB)
 ```
 
@@ -249,3 +263,95 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ---
 
 **Made with ❤️ for podcast creators and content producers**
+
+## Script to podcast
+
+Create `uploads/<episode>/podcast.json` with this exact structure:
+
+```json
+{
+  "version": 1,
+  "episode": {
+    "slug": "example-episode",
+    "title": "Example Episode",
+    "language": "en",
+    "summary": "A concise, content-accurate summary.",
+    "art_prompt": "Editorial illustration featuring the named people and concepts.",
+    "scene": "Two hosts recording in a quiet professional studio.",
+    "director_notes": "Natural conversation; vary pace; avoid announcer delivery."
+  },
+  "tts": {
+    "model": "google/gemini-3.1-flash-tts-preview",
+    "sample_rate": 24000,
+    "default_pause_ms": 180,
+    "fade_ms": 8
+  },
+  "speakers": {
+    "HOST": {
+      "name": "Maya",
+      "voice": "Kore",
+      "style": "Warm, confident, curious host."
+    },
+    "GUEST": {
+      "name": "Arun",
+      "voice": "Puck",
+      "style": "Thoughtful expert with conversational energy."
+    }
+  },
+  "turns": [
+    {
+      "speaker": "HOST",
+      "text": "[excited] Welcome to the show.",
+      "pause_after_ms": 140
+    },
+    {
+      "speaker": "GUEST",
+      "text": "Thanks, Maya. [laughs] This will be fun."
+    }
+  ],
+  "chapters": [
+    {
+      "title": "Introduction",
+      "turn": 0
+    }
+  ],
+  "youtube": {
+    "title": "Optional override",
+    "description": "Optional description prefix",
+    "tags": ["podcast", "education"],
+    "category": "Education"
+  }
+}
+```
+
+The contract accepts no unknown fields. `version` must be `1`; `episode.slug` must contain lowercase letters, digits, and single hyphens only. Episode text fields must be non-empty. Configure one or two speakers and at least one turn; every turn must reference a configured speaker. `sample_rate` must be `24000`, pauses must be from `0` to `5000` milliseconds, and `fade_ms` must be from `0` to `50`. Chapter turn indices must be unique, ascending, and valid. If chapters are omitted or empty, an `Introduction` chapter is added at turn `0`. YouTube fields are optional and default to the episode title, an empty description and tag list, and the `Education` category.
+
+OpenRouter's speech endpoint accepts one voice per request. The pipeline therefore renders each turn separately with its configured speaker voice, then joins and masters the turns. English inline audio tags such as `[laughs]`, `[whispers]`, and `[excited]` can guide delivery.
+
+Activate the repository's uv-managed environment, then run one of these commands:
+
+```bash
+source ~/pyenv/notebooklm-to-video/bin/activate
+python3 create_podcast.py uploads/<episode> --auto-approve
+python3 create_podcast.py uploads/<episode> --cover-art uploads/<episode>/cover.png --auto-approve
+python3 create_podcast.py uploads/<episode> --force-audio --force-art --auto-approve
+```
+
+Long paid TTS/image generation and ffmpeg runs must be launched in tmux. Completed turn audio is cached under `uploads/<episode>/.podcast/segments/`; rerunning resumes from that cache unless `--force-audio` is used.
+
+The pipeline writes all assets to the episode folder:
+
+```text
+uploads/<episode>/
+├── podcast.json
+├── .podcast/
+│   ├── manifest.json
+│   └── segments/
+├── <slug>.podcast.wav
+├── <slug>.podcast.mp3
+├── <slug>.png
+├── <slug>_video.mp4
+└── <slug>.youtube.md
+```
+
+The MP4, thumbnail, and Markdown metadata file are a package for manual YouTube upload. The pipeline does not upload to YouTube or use the YouTube API.
